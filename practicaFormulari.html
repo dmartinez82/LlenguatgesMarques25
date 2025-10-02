@@ -18,7 +18,26 @@
         </h2>
     </header>
 
-    <main>
+    <main id="principal">
+
+        <form action="./index.html" method="get">
+
+            <p>
+                <label for="nom">Nom:</label>
+                <input type="text" id="nom" name="nombre" required placeholder="Escriu el teu nom" maxlength="20">
+
+                <label for="llin1">Primer llinatge:</label>
+                <input type="text" id="llin1" name="ape1" required>
+
+                <label for="llin2">Segon llinatge:</label>
+                <input type="text" id="llin2" name="ape2">
+            </p>
+
+            <p>
+                <input type="submit" value="Envia">
+                <input type="reset" value="Esborrar">
+            </p>
+        </form>
 
     </main>
 
