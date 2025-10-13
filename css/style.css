@@ -1,0 +1,49 @@
+h2{
+    color: red;
+}
+
+a {
+    text-decoration: none;   
+}
+
+li{
+    list-style-type: lower-greek;
+}
+
+#bienvenidaPrimeraPractica{
+    background-color: aqua;
+    color: yellow;
+}
+
+.fonsGris {
+    background-color: lightgray;
+}
+
+.texteClar{
+    color: whitesmoke;
+}
+
+img {
+    border-width: 8px;
+    border-color: red; 
+    border-style: solid;
+    transition: opacity 2s;
+}
+
+img:hover{
+    opacity: 50%;
+    border-color: blue; 
+}
+
+th.fonsGris{
+    background-color: rgb(106, 106, 106);
+}
+
+th.fonsGris:hover{
+    background-color: rgb(24, 116, 141);
+}
+
+
+tbody .fonsVermell {
+    background-color: darkred;
+}

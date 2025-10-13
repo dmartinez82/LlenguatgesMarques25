@@ -8,12 +8,14 @@
     <meta name="author" content="Daniel Martínez">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Primera pràctica</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
 
     <header>
         <h1>Hola mundo!!!!! &lt; !!!!! ¥ !!!!!!!! ▰</h1>
+        <h2 id="bienvenidaPrimeraPractica" class="texteClar">Bienvenidos</h2>
         <hr>
     </header>
 
@@ -25,7 +27,9 @@
         <table border="1" bgcolor="lightYellow">
             <thead>
                 <tr>
-                    <th colspan="3">Paises del Mundo</th>
+                    <th colspan="3" class="texteClar fonsGris">
+                        <span class="">Paises del Mundo</span>
+                    </th>
                 </tr>
                 <tr>
                     <th>Continente</th>
@@ -34,16 +38,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr class="fonsGris texteClar">
                     <td rowspan="2">Asia</td>
-                    <td>India</td>
+                    <td class="fonsVermell">India</td>
                     <td>1.400.000.000</td>
                 </tr>
-                <tr>
+                <tr class="fonsVermell">
                     <td>China</td>
                     <td>1.300.000.000</td>
                 </tr>
-                <tr>
+                <tr class="fonsGris texteClar">
                     <td>América</td>
                     <td>EEUU</td>
                     <td>340.000.000</td>
@@ -54,7 +58,7 @@
         </table>
 
         <!-- Esto es un párrafo con un enlace-->
-        <p>
+        <p class="fonsVermell">
             Texto bla bla
             <a href="./img/playa.jpg" target="_blank">
                 <img src="./img/playa.jpg" alt="Imagen de una playa" width="320" title="Vacaciones">
@@ -65,7 +69,7 @@
         <div>
             <!--Deprecated -->
             <center>Lista de la compra:</center>
-            
+
             <ol type="A">
                 <li>Ketchup</li>
                 <li>Patatillas</li>
