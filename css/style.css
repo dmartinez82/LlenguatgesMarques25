@@ -10,8 +10,12 @@ li{
     list-style-type: lower-greek;
 }
 
+body{
+    background: linear-gradient(to bottom, #dfdfc1, #BC3250 15%, #0b1742);
+}
+
 #bienvenidaPrimeraPractica{
-    background-color: aqua;
+    background-color: rgba(6, 31, 190, 0.856);
     color: yellow;
 }
 
@@ -27,7 +31,7 @@ img {
     border-width: 8px;
     border-color: red; 
     border-style: solid;
-    transition: opacity 2s;
+    transition: opacity 5s;
 }
 
 img:hover{
