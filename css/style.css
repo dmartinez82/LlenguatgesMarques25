@@ -1,9 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@100..900&display=swap');
+
+
+h1{
+    font-family: "Exo 2", sans-serif;
+    font-weight: normal;
+}
+
+
 h2{
     color: red;
+    font-family: "Exo 2", sans-serif;
+    font-weight: 800;
+    padding: 10px;
+    width: 300px;
+    height: 40px;
+    margin-top: 40px;
 }
 
 a {
-    text-decoration: none;   
+    text-decoration: none;
 }
 
 li{
@@ -32,6 +47,9 @@ img {
     border-color: red; 
     border-style: solid;
     transition: opacity 5s;
+    width: 75%;
+    border-radius: 15px;
+
 }
 
 img:hover{
@@ -50,4 +68,31 @@ th.fonsGris:hover{
 
 tbody .fonsVermell {
     background-color: darkred;
+}
+
+.meitat{
+    width: 60%; 
+}
+
+.centrat{
+    text-align: center;
+}
+
+td, th, table{
+    border: 2px solid black;
+}
+
+td {
+    padding: 10px 5px;
+}
+
+table{
+    border-collapse: collapse;
+}
+
+.textoRandom{
+    background-color: yellow;
+    border: 3px solid white;
+    width: 100px;
+    display: inline-block;
 }
