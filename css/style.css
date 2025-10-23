@@ -26,6 +26,8 @@ li{
 }
 
 body{
+    margin: 0;
+    padding: 0;
     background: linear-gradient(to bottom, #dfdfc1, #BC3250 15%, #0b1742);
 }
 
@@ -95,4 +97,47 @@ table{
     border: 3px solid white;
     width: 100px;
     display: inline-block;
+}
+
+#divTexto{
+    width: 50%;
+    height: 50px;
+    margin: 10px;
+    text-align: center;
+    background-color: fuchsia;
+    float: inline-start;
+}
+
+.flota{
+    box-sizing: border-box;
+    margin: 1%;
+    float: left;
+    padding: 5px;
+    border: 3px solid black;
+    width: 30%;
+    height: 100px;
+}
+
+.wrapper{
+    width: 100%;
+}
+
+.clear{
+    clear: both;
+}
+
+#pregunta{
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+}
+
+header{
+    border: 1px solid black;
+    position: relative;
+}
+
+#gitHub{
+    position: sticky;
+    top: 10px;
 }

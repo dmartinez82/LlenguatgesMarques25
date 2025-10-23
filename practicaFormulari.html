@@ -9,14 +9,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pràctica Formulari</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
 
     <header>
+        <i class="fa-brands fa-github" id="gitHub"></i>
+
         <h2>
             Pràctica Formulari &#128511; 🎮
         </h2>
+        <i class="fa-solid fa-circle-question fa-2xl" id="pregunta"></i>
     </header>
 
     <main id="principal">
@@ -34,51 +38,59 @@
                 <input type="text" id="llin2" name="ape2">
             </p>
 
-            <div>
-                <span>Tria el teu color favorit</span>
-                <ul>
-                    <li><input type="checkbox" name="colors" id="colorVermell"><label for="colorVermell">Vermell</label>
-                    </li>
-                    <li><input type="checkbox" name="colors" id="colorGroc"><label for="colorGroc">Groc</label></li>
-                </ul>
+            <div class="wrapper">
+                <div class="flota">
+                    <span>Tria el teu color favorit</span>
+                    <ul>
+                        <li><input type="checkbox" name="colors" id="colorVermell"><label
+                                for="colorVermell">Vermell</label>
+                        </li>
+                        <li><input type="checkbox" name="colors" id="colorGroc"><label for="colorGroc">Groc</label></li>
+                    </ul>
+                </div>
+
+                <div class="flota">
+                    <span>Tria el teu color favorit</span>
+                    <ul>
+                        <li><input type="radio" name="colors" id="colorVermell"><label
+                                for="colorVermell">Vermell</label>
+                        </li>
+                        <li><input type="radio" name="colors" id="colorGroc"><label for="colorGroc">Groc</label></li>
+                    </ul>
+                </div>
+
+                <div class="flota">
+                    <label>Tria el teu color favorit</label>
+                    <select name="colorFavorit" id="colorFavorit">
+                        <option value="vermell">Vermell</option>
+                        <option value="groc">Groc</option>
+                    </select>
+                </div>
             </div>
 
-            <div>
-                <span>Tria el teu color favorit</span>
-                <ul>
-                    <li><input type="radio" name="colors" id="colorVermell"><label for="colorVermell">Vermell</label>
-                    </li>
-                    <li><input type="radio" name="colors" id="colorGroc"><label for="colorGroc">Groc</label></li>
-                </ul>
+            <div class="clear">
+                <p>
+                    <label for="dataNaix">Data de Naixement:</label>
+                    <input type="date" name="dataNaix" id="dataNaix" min="2000-01-01">
+                </p>
+
+                <p>
+                    <span>Login:</span>
+                    <input type="text" name="username" placeholder="username">
+                    <input type="password" name="passwd" id="passwd" placeholder="password">
+                </p>
+
+                <p>
+                    <textarea name="" id="" rows="5" cols="50"></textarea>
+                </p>
+
+                <p>
+                    <input type="submit" value="Envia">
+                    <input type="reset" value="Esborrar">
+                </p>
+
             </div>
 
-            <div>
-                <label>Tria el teu color favorit</label>
-                <select name="colorFavorit" id="colorFavorit">
-                    <option value="vermell">Vermell</option>
-                    <option value="groc">Groc</option>
-                </select>
-            </div>
-
-            <p>
-                <label for="dataNaix">Data de Naixement:</label>
-                <input type="date" name="dataNaix" id="dataNaix" min="2000-01-01">
-            </p>
-
-            <p>
-                <span>Login:</span>
-                <input type="text" name="username" placeholder="username">
-                <input type="password" name="passwd" id="passwd" placeholder="password">
-            </p>
-
-            <p>
-                <textarea name="" id="" rows="5" cols="50"></textarea>
-            </p>
-
-            <p>
-                <input type="submit" value="Envia">
-                <input type="reset" value="Esborrar">
-            </p>
         </form>
 
     </main>
