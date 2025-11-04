@@ -1,39 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+:root{
+    --color_fons: #92a8d1;
+    --color_nav: #034f84;
+    --color_footer: var(--color_nav);
+    --color_secundari: #f7cac9;
+    --color_hover: #f7786b;
+    --color_texte_clar: rgb(228, 227, 227);
+}
+
 body{
     margin: 0;
     padding: 0;
+    width: 100%;
 
-    background-color: aquamarine;
+  font-family: "Ubuntu", sans-serif;
+
+    background-color: var(--color_fons);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: 100vh;
 }
 
 main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 15px;
+}   
 
+main > div{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    min-width: 200px;
+
+    border-radius: 1rem;
+
+    box-sizing: border-box;
+    padding: 1vh;
+
+    /*background: linear-gradient(to bottom right, rgb(216, 216, 216), rgb(208, 194, 194)); */
+    background-color: var(--color_secundari);
+    box-shadow: 4px 4px 4px rgb(163, 152, 152);
+
+}
+
+main > div:hover{
+    /* background: linear-gradient(to bottom right, rgb(181, 133, 133), rgb(208, 194, 194)); */
+    background-color: var(--color_hover);
 }
 
 img{
-    width: 50%;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
 }
 
 nav{
-    background-color: chocolate;
-    position: fixed;
-    top: 0;
+    background-color: var(--color_nav);
     width: 100%;
+
+    color: var(--color_texte_clar);
 
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 nav ul {
-    width: 40%;
+    width: 50%;
     display: flex;
     justify-content: space-evenly;
     list-style-type: none;
+}
+
+li{
+    box-sizing: border-box;
+    padding: 5px 10px;
+
+}
+
+li:hover{
+    background-color: aqua;
+    color: black;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px rgb(151, 141, 141);
 }
 
 nav > p{
     width: 25%;
     display: flex;
     justify-content: center;
+}
+
+footer{
+    height: 10vh;
+    min-height: 40px;
+    background-color: var(--color_footer);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--color_texte_clar);
+
 }
