@@ -31,9 +31,42 @@ a{
 }
 
 header{
+    box-sizing: border-box;
     background: linear-gradient(to bottom right, rgb(208, 138, 138), rgb(147, 196, 147), yellow);
     padding: 60px 0;
     text-align: center;
     margin: 10px auto;
     width: 75%;
+
+    font-size: clamp(12px, 4vw, 36px);
+}
+
+main{
+    width: 75%;
+    margin: 0 auto;
+    height: 70vh;
+}
+
+main > div {
+    font-size: medium;
+    width: calc(100%/3);
+    float: left;
+    text-align: justify;
+    box-sizing: border-box;
+    padding: 15px;
+}
+
+footer{
+    width: 100%;
+    text-align: center;
+    line-height: 40px;
+    background-color: lavender;
+
+    clear: both;
+}
+
+nav, footer{
+    height: 15vh;
+    min-height: 50px;
+    max-height: 75px;
 }
