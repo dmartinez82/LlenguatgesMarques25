@@ -51,15 +51,17 @@ img {
     border-width: 8px;
     border-color: red; 
     border-style: solid;
-    transition: opacity 1s;
+    transition: all 1s;
     width: 75%;
     border-radius: 15px;
+
+
 
 }
 
 img:hover{
-    opacity: 50%;
-    border-color: blue; 
+    border-color: rgb(85, 85, 175); 
+        filter: sepia();
 }
 
 th.fonsGris{
