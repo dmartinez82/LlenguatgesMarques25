@@ -1,23 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@100..900&display=swap');
 
-body{
+body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Exo 2", sans-serif;
 }
 
-nav{
+nav {
     background-color: palevioletred;
 }
 
-ul{
+ul {
     margin: 0;
     padding: 0;
     font-size: 0;
 }
 
-li{
+li {
     list-style: none;
     display: inline-block;
     width: 25%;
@@ -26,37 +26,39 @@ li{
     font-size: medium;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-header{
+header {
     box-sizing: border-box;
     background: linear-gradient(to bottom right, rgb(208, 138, 138), rgb(147, 196, 147), yellow);
     padding: 60px 0;
     text-align: center;
     margin: 10px auto;
-    width: 75%;
-
+    width: 60%;
     font-size: clamp(12px, 4vw, 36px);
 }
 
-main{
-    width: 75%;
+main {
+    width: 90%;
     margin: 0 auto;
     height: 70vh;
 }
 
-main > div {
+main>div {
     font-size: medium;
     width: calc(100%/3);
     float: left;
     text-align: justify;
     box-sizing: border-box;
     padding: 15px;
+
+    border: 1px solid black;
+
 }
 
-footer{
+footer {
     width: 100%;
     text-align: center;
     line-height: 40px;
@@ -65,8 +67,34 @@ footer{
     clear: both;
 }
 
-nav, footer{
+nav,
+footer {
     height: 15vh;
     min-height: 50px;
     max-height: 75px;
+}
+
+@media (max-width: 800px) {
+    body {
+        background-color: rgb(182, 230, 173);
+    }
+
+    header {
+        width: 85%;
+    }
+
+    main>div {
+        width: 50%;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        background-color: lightblue;
+    }
+
+    main>div {
+        width: 100%;
+    }
+
 }
