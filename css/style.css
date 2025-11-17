@@ -146,3 +146,15 @@ header{
     position: sticky;
     top: 10px;
 }
+
+input[required]{
+    background-color: rgb(206, 206, 115);
+}
+
+input:checked + label{
+    font-weight: bolder;
+}
+
+input[type="password"]{
+    border: 2px solid red;
+}
