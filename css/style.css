@@ -158,3 +158,27 @@ input:checked + label{
 input[type="password"]{
     border: 2px solid red;
 }
+
+main
+{
+    margin: 20px;
+}
+
+table#taula2 thead{
+    background-color: gray;
+    color: white;
+}
+
+table#taula2 tbody tr:nth-child(2n-1){
+    background-color: rgb(165, 125, 125);
+}
+
+/* 
+ol>li:nth-child(even){
+    color: blue;
+} */
+
+
+ol>li:nth-of-type(even){
+    color: blue;
+}
