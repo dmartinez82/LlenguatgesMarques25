@@ -70,8 +70,15 @@ input {
 }
 
 .btn-small {
-    padding: 8px 12px;
+    width: 40px;
+}
+
+.background-green {
     background-color: #27ae60;
+}
+
+.background-red {
+    background-color: #c52828;
 }
 
 .resultat {
@@ -90,4 +97,8 @@ li {
     background-color: #f0f0f0;
     border-radius: 4px;
     margin-bottom: 5px;
+}
+
+li:hover{
+    background-color: #c57070;
 }

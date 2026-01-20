@@ -1,18 +1,24 @@
-const DOM = {
-    inputNombre: document.querySelector("#nombre"),
-    boton: document.querySelector("#myButton"),
-    btnPapelera: document.querySelector("form button[type='reset']"),
-    titol: document.querySelector("body > h1"),
-    inputEdad: document.querySelector("#edat"),
-    body: document.querySelector("body"),
-    intereses: document.querySelector("#intereses"),
-    btnAfegir: document.querySelector("#btnAfegir"),
-    resultatInteresos: document.querySelector("#resultatInteresos")
+function $ (selector){
+    return document.querySelector(selector);
 }
 
-DOM.boton.onclick = function () { saluda() };
+const DOM = {
+    inputNombre: $("#nombre"),
+    boton: $("#myButton"),
+    btnPapelera: $("form button[type='reset']"),
+    titol: $(".contenedor > h1"),
+    inputEdad: $("#edat"),
+    body: $("body"),
+    intereses: $("#intereses"),
+    btnAfegir: $("#btnAfegir"),
+    btnElimina: $("#btnElimina"),
+    resultatInteresos: $("#resultatInteresos")
+}
+
+DOM.boton.onclick = saluda;
 DOM.btnPapelera.onclick = neteja;
 DOM.btnAfegir.onclick = afegir;
+DOM.btnElimina.onclick = elimina;
 
 let interesos = [];
 
@@ -76,4 +82,22 @@ function mostraResultats(){
     resultatHTML += "</ul>";
 
     DOM.resultatInteresos.innerHTML = resultatHTML;
+}
+
+function elimina(){
+    //TODO: refactorizar para no duplicar con "afegir"
+    let interesUsuari = DOM.intereses.value.trim();
+    const indexTrobat = interesos.findIndex(function (element) {
+        if (element.toUpperCase() == interesUsuari.toUpperCase())
+            return true;
+        else 
+            return false;
+    });
+
+    if (interesUsuari && indexTrobat > -1){
+        interesos.splice(indexTrobat, 1); //TODO: usar splice tanto para eliminar como para añadir
+        mostraResultats();
+    }
+
+
 }
