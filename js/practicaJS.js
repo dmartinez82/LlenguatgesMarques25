@@ -1,13 +1,11 @@
-function $ (selector){
-    return document.querySelector(selector);
-}
+const $ = (selector) => document.querySelector(selector);
 
 const DOM = {
     inputNombre: $("#nombre"),
     boton: $("#myButton"),
     btnPapelera: $("form button[type='reset']"),
     titol: $(".contenedor > h1"),
-    inputEdad: $("#edat"),
+    inputEdad: $("#dataNaix"),
     body: $("body"),
     intereses: $("#intereses"),
     btnAfegir: $("#btnAfegir"),
@@ -19,6 +17,8 @@ DOM.boton.onclick = saluda;
 DOM.btnPapelera.onclick = neteja;
 DOM.btnAfegir.onclick = afegir;
 DOM.btnElimina.onclick = elimina;
+
+DOM.inputEdad.onblur = compruebaEdad;
 
 let interesos = [];
 
@@ -52,18 +52,32 @@ function neteja() {
 }
 
 function compruebaEdad() {
-    let edad = DOM.inputEdad.value;
-    return (edad >= 18);
+    let fechaInput = DOM.inputEdad.value;
+
+    let fecha = new Date(fechaInput);
+    let avui = new Date();
+
+    let edad = avui.getFullYear() - fecha.getFullYear();
+
+    console.log(fechaInput);
+    console.dir(fecha);
+
+    console.log(edad);
+
 }
 
 function afegir(){
     let interesUsuari = DOM.intereses.value.trim();
-    const indexTrobat = interesos.findIndex(function (element) {
-        if (element.toUpperCase() == interesUsuari.toUpperCase())
-            return true;
-        else 
-            return false;
-    });
+    // const indexTrobat = interesos.findIndex(function (element) {
+    //     if (element.toUpperCase() == interesUsuari.toUpperCase())
+    //         return true;
+    //     else 
+    //         return false;
+    // });
+
+    const indexTrobat = interesos.findIndex((element) =>
+         (element.toUpperCase() == interesUsuari.toUpperCase())
+);
 
     if (interesUsuari && indexTrobat == -1){
         interesos.push(interesUsuari);
@@ -76,8 +90,10 @@ function mostraResultats(){
     DOM.resultatInteresos.innerHTML = "";
 
     let resultatHTML = "<ul>";
+    let index = 0;
     for(let interes of interesos){
-        resultatHTML += "<li>" + interes + "</li>";
+        // resultatHTML += "<li id=\"elemento" + index++ +"\">" + interes + "</li>";
+        resultatHTML += `<li id="elemento${index++}">${interes}</li>`;
     }
     resultatHTML += "</ul>";
 
