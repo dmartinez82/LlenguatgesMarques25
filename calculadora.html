@@ -20,6 +20,7 @@
                 <option value="-">Restar (-)</option>
                 <option value="*">Multiplicar (×)</option>
                 <option value="/">Dividir (÷)</option>
+                <option value="%">Módulo (%)</option>
             </select>
             <button type="button" id="calcular">Calcular</button>
         </form>
@@ -41,18 +42,33 @@
         DOM.calcular.onclick = calcular;
 
         function calcular(){
-            let primerValor = DOM.num1.value;
-            let segundoValor = DOM.num2.value;
-
-            let operacion = DOM.operation.value;
+            let primerValor = parseInt(DOM.num1.value);
+            let segundoValor = parseInt(DOM.num2.value);
 
             let resultado = "ERROR!";
+
+            if(isNaN(primerValor) || isNaN(segundoValor)){
+                DOM.result.value = resultado;
+                return;
+            }
+
+            let operacion = DOM.operation.value;
+            
             switch(operacion){
                 case "+": 
                     resultado = sumar(primerValor, segundoValor);
                     break;
                 case "-":
                     resultado = restar(primerValor, segundoValor);
+                    break;
+                case "*":
+                    resultado = mult(primerValor, segundoValor);
+                    break;
+                case "/":
+                    resultado = div(primerValor, segundoValor);
+                    break;
+                case "%":
+                    resultado = mod(primerValor, segundoValor);
                     break;
                 default:
                     break;
@@ -62,12 +78,27 @@
         }
 
         function sumar(a, b){
-            return "PRUEBA SUMA";
+            return a + b;
         }
 
         function restar(a, b){
-            return "PRUEBA RESTA";
+            return Math.abs(a-b);
         }
+
+        function mult(a,b){
+            return a*b;
+        }
+
+        function div(a,b){
+            if (b==0) return "No es pot dividir per 0";
+            return a/b;
+        }
+
+        function mod(a,b){
+            return a%b;
+        }
+
+        
 
     </script>
     
