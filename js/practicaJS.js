@@ -13,7 +13,7 @@ const DOM = {
     resultatInteresos: $("#resultatInteresos")
 }
 
-DOM.boton.onclick = saluda;
+DOM.boton.onclick = guardar;
 DOM.btnPapelera.onclick = neteja;
 DOM.btnAfegir.onclick = afegir;
 DOM.btnElimina.onclick = elimina;
@@ -22,9 +22,11 @@ DOM.inputEdad.onblur = compruebaEdad;
 
 let interesos = [];
 
-function saluda() {
+function guardar() {
 
-    if (!DOM.inputEdad.value) {
+    const dataNaix = DOM.inputEdad.value;
+
+    if (!dataNaix) {
         alert("Debes introducir tu edad.");
         return;
     }
@@ -41,6 +43,23 @@ function saluda() {
     } else {
         DOM.titol.textContent = "Hola " + nom + ".";
         DOM.body.style.backgroundColor = "#12FB33";
+
+        //GUARDAR el objeto
+
+        const usuari = {
+            nom: nom,
+            dataNaix: dataNaix
+        }
+
+        console.log(usuari);
+        console.log("-------------");
+        const json = JSON.stringify(usuari);
+        console.log(json);
+        console.log("-------------");
+        console.log(JSON.parse(json));
+
+        localStorage.setItem("usuari", JSON.stringify(usuari));
+        console.log(localStorage.getItem("usuari"));
     }
 }
 
@@ -57,12 +76,9 @@ function compruebaEdad() {
     let fecha = new Date(fechaInput);
     let avui = new Date();
 
-    let edad = avui.getFullYear() - fecha.getFullYear();
+    let edad = avui.getFullYear() - fecha.getFullYear(); //TODO: MEJORAR!!
 
-    console.log(fechaInput);
-    console.dir(fecha);
-
-    console.log(edad);
+    return edad>=18;
 
 }
 
