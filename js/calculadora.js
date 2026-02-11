@@ -3,7 +3,8 @@ const DOM = {
     num2: document.getElementById('num2'),
     operation: document.getElementById('operation'),
     result: document.getElementById('result'),
-    calcular: document.querySelector("#calcular")
+    calcular: document.querySelector("#calcular"),
+    limpiarHistorial: document.getElementById('limpiarHistorial')
 };
 
 DOM.calcular.onclick = calcular;
@@ -15,6 +16,8 @@ DOM.num1.addEventListener('keypress', (e) => {
 DOM.num2.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') calcular();
 });
+
+DOM.limpiarHistorial.onclick = limpiarHistorialCompleto;
 
 function calcular() {
     let primerValor = parseFloat(DOM.num1.value);
@@ -90,6 +93,11 @@ function div(a, b) {
 
 function mod(a, b) {
     return a % b;
+}
+
+function limpiarHistorialCompleto() {
+    localStorage.removeItem("historial");
+    pintarHistorial([]);
 }
 
 pintarHistorial(localStorage.getItem("historial")?JSON.parse(localStorage.getItem("historial")):[]);
