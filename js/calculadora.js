@@ -131,6 +131,12 @@ function recuperarOperacion() {
         DOM.num2.value = operacion.num2;
         DOM.operation.value = operacion.operation;
         DOM.result.value = operacion.result;
+
+        // Construir cadena legible y copiar (solo navigator.clipboard)
+        const displayText = `${operacion.num1} ${operacion.operation} ${operacion.num2} = ${operacion.result}`;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(displayText).catch(() => {});
+        }
     }
 }
 
