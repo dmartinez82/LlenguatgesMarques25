@@ -8,9 +8,17 @@ const DOM = {
 
 DOM.calcular.onclick = calcular;
 
+// Eventos de teclado para calcular al pulsar Enter
+DOM.num1.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') calcular();
+});
+DOM.num2.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') calcular();
+});
+
 function calcular() {
-    let primerValor = parseInt(DOM.num1.value);
-    let segundoValor = parseInt(DOM.num2.value);
+    let primerValor = parseFloat(DOM.num1.value);
+    let segundoValor = parseFloat(DOM.num2.value);
 
     let resultado = "ERROR!";
 
@@ -46,11 +54,9 @@ function calcular() {
     let elemento = `${primerValor} ${operacion} ${segundoValor} = ${resultado};`;
 
     guardarLocalStorage(elemento);
-
 }
 
 function guardarLocalStorage(elemento){
-    console.log(localStorage.getItem("historial"));
     let historial = !localStorage.getItem("historial")?[]:JSON.parse(localStorage.getItem("historial"));
     historial.push(elemento);
     pintarHistorial(historial);
@@ -79,7 +85,7 @@ function mult(a, b) {
 
 function div(a, b) {
     if (b == 0) return "No es pot dividir per 0";
-    return a / b;
+    return parseFloat((a / b).toFixed(3));
 }
 
 function mod(a, b) {
