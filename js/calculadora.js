@@ -22,6 +22,7 @@ DOM.num2.addEventListener('keypress', (e) => {
 DOM.limpiarHistorial.onclick = limpiarHistorialCompleto;
 DOM.limpiarInputs.onclick = limpiarInputsCalc;
 DOM.historialSelect.addEventListener('change', recuperarOperacion);
+DOM.historialSelect.addEventListener('dblclick', eliminarOperacion);
 
 function calcular() {
     let primerValor = parseFloat(DOM.num1.value);
@@ -129,6 +130,20 @@ function recuperarOperacion() {
         DOM.operation.value = operacion.operation;
         DOM.result.value = operacion.result;
     }
+}
+
+function eliminarOperacion() {
+    let selectedIndex = DOM.historialSelect.value;
+    if (selectedIndex === "") return;
+    
+    let historial = !localStorage.getItem("historial")?[]:JSON.parse(localStorage.getItem("historial"));
+    
+    if (historial[selectedIndex]) {
+        historial.splice(selectedIndex, 1);
+        localStorage.setItem("historial", JSON.stringify(historial));
+        pintarHistorial(historial);
+    }
+    limpiarInputsCalc();
 }
 
 pintarHistorial(localStorage.getItem("historial")?JSON.parse(localStorage.getItem("historial")):[]);
