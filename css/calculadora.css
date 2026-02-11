@@ -1,7 +1,21 @@
 :root {
     --color-bg: #f0f0f0;
+    --color-text: #333;
+    --color-text-light: #666;
+    --color-border: #ddd;
     --color-primary: #4a90e2;
     --color-danger: #ff6b6b;
+    --color-input-bg: #ffffff;
+}
+
+body.dark-mode {
+    --color-bg: #1a1a1a;
+    --color-text: #e0e0e0;
+    --color-text-light: #b0b0b0;
+    --color-border: #333;
+    --color-primary: #5ba3f5;
+    --color-danger: #ff8a8a;
+    --color-input-bg: #2a2a2a;
 }
 
 body {
@@ -24,7 +38,7 @@ header {
 
 header h1 {
     margin: 0 0 10px 0;
-    color: #333;
+    color: var(--color-text);
 }
 
 main {
@@ -58,9 +72,11 @@ button {
 
 input[type="number"],
 select {
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-border);
     border-radius: 4px;
     font-family: Arial, sans-serif;
+    background-color: var(--color-input-bg);
+    color: var(--color-text);
 }
 
 input[type="number"]:focus,
@@ -87,10 +103,11 @@ button {
     padding: 14px 12px;
     margin-top: 10px;
     box-sizing: border-box;
-    background-color: white;
-    border: 1px solid #ddd;
+    background-color: var(--color-input-bg);
+    border: 1px solid var(--color-border);
     border-radius: 4px;
     font-weight: bold;
+    color: var(--color-text);
 }
 
 .historial {
@@ -105,7 +122,7 @@ button {
     font-weight: bold;
     display: block;
     margin-bottom: 10px;
-    color: #333;
+    color: var(--color-text);
     font-size: 16px;
 }
 
@@ -113,6 +130,8 @@ button {
     width: 100%;
     height: 200px;
     flex: 1;
+    background-color: var(--color-input-bg);
+    color: var(--color-text);
 }
 
 #calcular,
@@ -147,4 +166,27 @@ button:hover {
     margin-bottom: 5px;
     display: block;
     text-align: center;
+}
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.theme-toggle i {
+    font-size: 20px;
 }

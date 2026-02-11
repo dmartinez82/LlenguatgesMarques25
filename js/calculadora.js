@@ -6,8 +6,30 @@ const DOM = {
     calcular: document.querySelector("#calcular"),
     limpiarHistorial: document.getElementById('limpiarHistorial'),
     limpiarInputs: document.getElementById('limpiarInputs'),
-    historialSelect: document.getElementById('historial')
+    historialSelect: document.getElementById('historial'),
+    toggleTheme: document.getElementById('toggleTheme')
 };
+
+// Inicializar tema
+inicializarTema();
+
+function inicializarTema() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.body.classList.toggle('dark-mode', savedTheme === 'dark');
+    actualizarIconoTema();
+}
+
+function actualizarIconoTema() {
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    DOM.toggleTheme.innerHTML = `<i class="fas fa-${isDarkMode ? 'moon' : 'sun'}"></i>`;
+}
+
+DOM.toggleTheme.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+    localStorage.setItem('theme', theme);
+    actualizarIconoTema();
+});
 
 DOM.calcular.onclick = calcular;
 
