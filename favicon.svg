@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Cuerpo de la calculadora -->
+  <rect x="10" y="10" width="80" height="80" rx="8" fill="#4a90e2" stroke="#2a5daa" stroke-width="2"/>
+  
+  <!-- Pantalla -->
+  <rect x="15" y="15" width="70" height="20" rx="4" fill="#f0f0f0"/>
+  <text x="50" y="29" font-size="12" fill="#333" text-anchor="middle" font-weight="bold">123</text>
+  
+  <!-- Botones en grid 2x2 -->
+  <!-- Fila 1 -->
+  <rect x="15" y="40" width="15" height="12" rx="2" fill="#ff6b6b"/>
+  <text x="22.5" y="47" font-size="8" fill="white" text-anchor="middle" font-weight="bold">+</text>
+  
+  <rect x="32" y="40" width="15" height="12" rx="2" fill="#ff6b6b"/>
+  <text x="39.5" y="47" font-size="8" fill="white" text-anchor="middle" font-weight="bold">-</text>
+  
+  <rect x="49" y="40" width="15" height="12" rx="2" fill="#ff6b6b"/>
+  <text x="56.5" y="47" font-size="8" fill="white" text-anchor="middle" font-weight="bold">×</text>
+  
+  <rect x="66" y="40" width="19" height="12" rx="2" fill="#ff6b6b"/>
+  <text x="75.5" y="47" font-size="8" fill="white" text-anchor="middle" font-weight="bold">÷</text>
+  
+  <!-- Fila 2 -->
+  <rect x="15" y="55" width="15" height="12" rx="2" fill="#4a90e2" stroke="#2a5daa" stroke-width="1"/>
+  <text x="22.5" y="62" font-size="8" fill="white" text-anchor="middle" font-weight="bold">7</text>
+  
+  <rect x="32" y="55" width="15" height="12" rx="2" fill="#4a90e2" stroke="#2a5daa" stroke-width="1"/>
+  <text x="39.5" y="62" font-size="8" fill="white" text-anchor="middle" font-weight="bold">8</text>
+  
+  <rect x="49" y="55" width="15" height="12" rx="2" fill="#4a90e2" stroke="#2a5daa" stroke-width="1"/>
+  <text x="56.5" y="62" font-size="8" fill="white" text-anchor="middle" font-weight="bold">9</text>
+  
+  <rect x="66" y="55" width="19" height="12" rx="2" fill="#4a90e2" stroke="#2a5daa" stroke-width="1"/>
+  <text x="75.5" y="62" font-size="8" fill="white" text-anchor="middle" font-weight="bold">=</text>
+  
+  <!-- Fila 3 -->
+  <rect x="15" y="70" width="15" height="12" rx="2" fill="#4a90e2" stroke="#2a5daa" stroke-width="1"/>
+  <text x="22.5" y="77" font-size="8" fill="white" text-anchor="middle" font-weight="bold">4</text>
+  
+  <rect x="32" y="70" width="15" height="12" rx="2" fill="#4a90e2" stroke="#2a5daa" stroke-width="1"/>
+  <text x="39.5" y="77" font-size="8" fill="white" text-anchor="middle" font-weight="bold">5</text>
+  
+  <rect x="49" y="70" width="15" height="12" rx="2" fill="#4a90e2" stroke="#2a5daa" stroke-width="1"/>
+  <text x="56.5" y="77" font-size="8" fill="white" text-anchor="middle" font-weight="bold">6</text>
+  
+  <rect x="66" y="70" width="19" height="12" rx="2" fill="#ff9800" stroke="#cc7700" stroke-width="1"/>
+  <text x="75.5" y="77" font-size="8" fill="white" text-anchor="middle" font-weight="bold">C</text>
+</svg>
