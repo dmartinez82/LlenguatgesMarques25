@@ -1,6 +1,12 @@
+:root {
+    --color-bg: #f0f0f0;
+    --color-primary: #4a90e2;
+    --color-danger: #ff6b6b;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: var(--color-bg);
     margin: 0;
     padding: 20px;
     display: flex;
@@ -38,6 +44,16 @@ button {
     font-size: 16px;
     width: 100%;
     box-sizing: border-box;
+    text-align: center;
+}
+
+button {
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: filter 0.3s ease;
 }
 
 #result {
@@ -65,18 +81,27 @@ button {
     height: 200px;
 }
 
-#limpiarHistorial {
+#calcular,
+#limpiarHistorial,
+#limpiarInputs {
     margin-top: 15px;
     width: 100%;
-    background-color: #ff6b6b;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
 }
 
-#limpiarHistorial:hover {
-    background-color: #ff5252;
+#calcular {
+    max-width: 280px;
+    background-color: var(--color-primary);
+}
+
+#limpiarHistorial,
+#limpiarInputs {
+    background-color: var(--color-danger);
+}
+
+#limpiarInputs {
+    max-width: 280px;
+}
+
+button:hover {
+filter: brightness(0.9);
 }
