@@ -10,27 +10,11 @@ const DOM = {
     toggleTheme: document.getElementById('toggleTheme')
 };
 
-// Inicializar tema
-inicializarTema();
-
-function inicializarTema() {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.body.classList.toggle('dark-mode', savedTheme === 'dark');
-    actualizarIconoTema();
-}
-
-function actualizarIconoTema() {
-    const isDarkMode = document.body.classList.contains('dark-mode');
-    DOM.toggleTheme.innerHTML = `<i class="fas fa-${isDarkMode ? 'moon' : 'sun'}"></i>`;
-}
-
-DOM.toggleTheme.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
-    localStorage.setItem('theme', theme);
-    actualizarIconoTema();
-});
-
+DOM.limpiarHistorial.onclick = limpiarHistorialCompleto;
+DOM.limpiarInputs.onclick = limpiarInputsCalc;
+DOM.historialSelect.addEventListener('change', recuperarOperacion);
+DOM.historialSelect.addEventListener('dblclick', eliminarOperacion);
+DOM.toggleTheme.addEventListener('click', toggleDarkMMode);
 DOM.calcular.onclick = calcular;
 
 // Eventos de teclado para calcular al pulsar Enter
@@ -41,10 +25,6 @@ DOM.num2.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') calcular();
 });
 
-DOM.limpiarHistorial.onclick = limpiarHistorialCompleto;
-DOM.limpiarInputs.onclick = limpiarInputsCalc;
-DOM.historialSelect.addEventListener('change', recuperarOperacion);
-DOM.historialSelect.addEventListener('dblclick', eliminarOperacion);
 
 function calcular() {
     let primerValor = parseFloat(DOM.num1.value);
@@ -167,5 +147,26 @@ function eliminarOperacion() {
     }
     limpiarInputsCalc();
 }
+
+function inicializarTema() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.body.classList.toggle('dark-mode', savedTheme === 'dark');
+    actualizarIconoTema();
+}
+
+function actualizarIconoTema() {
+    const isDarkMode = localStorage.getItem('theme') === 'dark';
+    DOM.toggleTheme.innerHTML = `<i class="fas fa-${isDarkMode ? 'moon' : 'sun'}"></i>`;
+}
+
+function toggleDarkMMode() {
+    document.body.classList.toggle('dark-mode');
+    const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+    localStorage.setItem('theme', theme);
+    actualizarIconoTema();
+}
+
+// Inicializaciones
+inicializarTema();
 
 pintarHistorial(localStorage.getItem("historial")?JSON.parse(localStorage.getItem("historial")):[]);
