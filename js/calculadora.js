@@ -5,7 +5,8 @@ const DOM = {
     result: document.getElementById('result'),
     calcular: document.querySelector("#calcular"),
     limpiarHistorial: document.getElementById('limpiarHistorial'),
-    limpiarInputs: document.getElementById('limpiarInputs')
+    limpiarInputs: document.getElementById('limpiarInputs'),
+    historialSelect: document.getElementById('historial')
 };
 
 DOM.calcular.onclick = calcular;
@@ -20,6 +21,7 @@ DOM.num2.addEventListener('keypress', (e) => {
 
 DOM.limpiarHistorial.onclick = limpiarHistorialCompleto;
 DOM.limpiarInputs.onclick = limpiarInputsCalc;
+DOM.historialSelect.addEventListener('change', recuperarOperacion);
 
 function calcular() {
     let primerValor = parseFloat(DOM.num1.value);
@@ -56,24 +58,30 @@ function calcular() {
 
     DOM.result.value = resultado;
 
-    let elemento = `${primerValor} ${operacion} ${segundoValor} = ${resultado};`;
+    let operacionObj = {
+        num1: primerValor,
+        operation: operacion,
+        num2: segundoValor,
+        result: resultado
+    };
 
-    guardarLocalStorage(elemento);
+    guardarLocalStorage(operacionObj);
 }
 
-function guardarLocalStorage(elemento){
+function guardarLocalStorage(operacionObj){
     let historial = !localStorage.getItem("historial")?[]:JSON.parse(localStorage.getItem("historial"));
-    historial.push(elemento);
+    historial.push(operacionObj);
     pintarHistorial(historial);
     localStorage.setItem("historial", JSON.stringify(historial));
 }
 
 function pintarHistorial(array){
     let html = "";
-    array.forEach(element => {
-        html += `<option>${element}</option>`;
+    array.forEach((element, index) => {
+        let displayText = `${element.num1} ${element.operation} ${element.num2} = ${element.result}`;
+        html += `<option value="${index}">${displayText}</option>`;
     });
-    document.querySelector("#historial").innerHTML = html;
+    DOM.historialSelect.innerHTML = html;
 }
 
 function sumar(a, b) {
@@ -81,7 +89,7 @@ function sumar(a, b) {
 }
 
 function restar(a, b) {
-    return Math.abs(a - b);
+    return a - b;
 }
 
 function mult(a, b) {
@@ -108,6 +116,19 @@ function limpiarInputsCalc() {
     DOM.result.value = '';
     DOM.operation.value = '+';
     DOM.num1.focus();
+}
+
+function recuperarOperacion() {
+    let historial = !localStorage.getItem("historial")?[]:JSON.parse(localStorage.getItem("historial"));
+    let selectedIndex = DOM.historialSelect.value;
+    
+    if (selectedIndex !== "" && historial[selectedIndex]) {
+        let operacion = historial[selectedIndex];
+        DOM.num1.value = operacion.num1;
+        DOM.num2.value = operacion.num2;
+        DOM.operation.value = operacion.operation;
+        DOM.result.value = operacion.result;
+    }
 }
 
 pintarHistorial(localStorage.getItem("historial")?JSON.parse(localStorage.getItem("historial")):[]);
