@@ -1,21 +1,23 @@
+/* 1. ORGANIZACIÓN DEL DOM */
 const DOM = {
     num1: document.getElementById('num1'),
     num2: document.getElementById('num2'),
     operation: document.getElementById('operation'),
     result: document.getElementById('result'),
-    calcular: document.querySelector("#calcular"),
+    calcular: document.getElementById('calcular'), // Unificamos a getElementById
     limpiarHistorial: document.getElementById('limpiarHistorial'),
     limpiarInputs: document.getElementById('limpiarInputs'),
     historialSelect: document.getElementById('historial'),
     toggleTheme: document.getElementById('toggleTheme')
 };
 
-DOM.limpiarHistorial.onclick = limpiarHistorialCompleto;
-DOM.limpiarInputs.onclick = limpiarInputsCalc;
+/* 2. EVENT LISTENERS (Todo con addEventListener) */
+DOM.limpiarHistorial.addEventListener('click', limpiarHistorialCompleto);
+DOM.limpiarInputs.addEventListener('click', limpiarInputsCalc);
 DOM.historialSelect.addEventListener('change', recuperarOperacion);
 DOM.historialSelect.addEventListener('dblclick', eliminarOperacion);
-DOM.toggleTheme.addEventListener('click', toggleDarkMMode);
-DOM.calcular.onclick = calcular;
+DOM.toggleTheme.addEventListener('click', toggleDarkMode);
+DOM.calcular.addEventListener('click', calcular);
 
 // Eventos de teclado para calcular al pulsar Enter
 DOM.num1.addEventListener('keypress', (e) => {
@@ -26,9 +28,22 @@ DOM.num2.addEventListener('keypress', (e) => {
 });
 
 
+/* 3. FUNCIONES HELPER (Para no repetir código de localStorage) */
+function getHistorial() {
+    const history = localStorage.getItem("historial");
+    return history ? JSON.parse(history) : [];
+}
+
+function saveHistorial(lista) {
+    localStorage.setItem("historial", JSON.stringify(lista));
+    pintarHistorial(lista);
+}
+
+/* 4. LÓGICA PRINCIPAL */
 function calcular() {
-    let primerValor = parseFloat(DOM.num1.value);
-    let segundoValor = parseFloat(DOM.num2.value);
+    const primerValor = parseFloat(DOM.num1.value);
+    const segundoValor = parseFloat(DOM.num2.value);
+    const operacion = DOM.operation.value;
 
     let resultado = "ERROR!";
 
@@ -37,75 +52,70 @@ function calcular() {
         return;
     }
 
-    let operacion = DOM.operation.value;
-
     switch (operacion) {
-        case "+":
-            resultado = sumar(primerValor, segundoValor);
-            break;
-        case "-":
-            resultado = restar(primerValor, segundoValor);
-            break;
-        case "*":
-            resultado = mult(primerValor, segundoValor);
-            break;
-        case "/":
-            resultado = div(primerValor, segundoValor);
-            break;
-        case "%":
-            resultado = mod(primerValor, segundoValor);
-            break;
-        default:
-            break;
+        case "+": resultado = sumar(primerValor, segundoValor); break;
+        case "-": resultado = restar(primerValor, segundoValor); break;
+        case "*": resultado = mult(primerValor, segundoValor); break;
+        case "/": resultado = div(primerValor, segundoValor); break;
+        case "%": resultado = mod(primerValor, segundoValor); break;
     }
 
+    // Actualizar UI
     DOM.result.value = resultado;
 
-    let operacionObj = {
+    // Guardar en historial
+    const nuevaOperacion = {
         num1: primerValor,
         operation: operacion,
         num2: segundoValor,
         result: resultado
     };
 
-    guardarLocalStorage(operacionObj);
+    const historial = getHistorial();
+    historial.push(nuevaOperacion);
+    saveHistorial(historial);
 }
 
-function guardarLocalStorage(operacionObj){
-    let historial = !localStorage.getItem("historial")?[]:JSON.parse(localStorage.getItem("historial"));
-    historial.push(operacionObj);
-    pintarHistorial(historial);
-    localStorage.setItem("historial", JSON.stringify(historial));
-}
-
-function pintarHistorial(array){
+/* 5. GESTIÓN DEL HISTORIAL */
+function pintarHistorial(array) {
     let html = "";
     array.forEach((element, index) => {
-        let displayText = `${element.num1} ${element.operation} ${element.num2} = ${element.result}`;
+        const displayText = `${element.num1} ${element.operation} ${element.num2} = ${element.result}`;
         html += `<option value="${index}">${displayText}</option>`;
     });
     DOM.historialSelect.innerHTML = html;
 }
 
-function sumar(a, b) {
-    return a + b;
+function recuperarOperacion() {
+    const historial = getHistorial();
+    const selectedIndex = DOM.historialSelect.value;
+
+    if (selectedIndex !== "" && historial[selectedIndex]) {
+        const op = historial[selectedIndex];
+        DOM.num1.value = op.num1;
+        DOM.num2.value = op.num2;
+        DOM.operation.value = op.operation;
+        DOM.result.value = op.result;
+
+        // Construir cadena legible y copiar (solo navigator.clipboard)
+        const displayText = `${op.num1} ${op.operation} ${op.num2} = ${op.result}`;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(displayText).catch(() => { });
+        }
+    }
 }
 
-function restar(a, b) {
-    return a - b;
-}
+function eliminarOperacion() {
+    const selectedIndex = DOM.historialSelect.value;
+    if (selectedIndex === "") return;
 
-function mult(a, b) {
-    return a * b;
-}
-
-function div(a, b) {
-    if (b == 0) return "No es pot dividir per 0";
-    return parseFloat((a / b).toFixed(3));
-}
-
-function mod(a, b) {
-    return a % b;
+    const historial = getHistorial();
+    // Validamos que el índice exista antes de borrar
+    if (historial[selectedIndex]) {
+        historial.splice(selectedIndex, 1);
+        saveHistorial(historial); // Esto actualiza localStorage y repinta
+        limpiarInputsCalc();
+    }
 }
 
 function limpiarHistorialCompleto() {
@@ -121,58 +131,39 @@ function limpiarInputsCalc() {
     DOM.num1.focus();
 }
 
-function recuperarOperacion() {
-    let historial = !localStorage.getItem("historial")?[]:JSON.parse(localStorage.getItem("historial"));
-    let selectedIndex = DOM.historialSelect.value;
-    
-    if (selectedIndex !== "" && historial[selectedIndex]) {
-        let operacion = historial[selectedIndex];
-        DOM.num1.value = operacion.num1;
-        DOM.num2.value = operacion.num2;
-        DOM.operation.value = operacion.operation;
-        DOM.result.value = operacion.result;
+/* 6. OPERACIONES MATEMÁTICAS */
+// Las dejamos simples, perfectas para entender inputs y outputs
+function sumar(a, b) { return a + b; }
+function restar(a, b) { return a - b; }
+function mult(a, b) { return a * b; }
+function mod(a, b) { return a % b; }
 
-        // Construir cadena legible y copiar (solo navigator.clipboard)
-        const displayText = `${operacion.num1} ${operacion.operation} ${operacion.num2} = ${operacion.result}`;
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(displayText).catch(() => {});
-        }
-    }
+function div(a, b) {
+    if (b === 0) return "No es pot dividir per 0";
+    return parseFloat((a / b).toFixed(3));
 }
 
-function eliminarOperacion() {
-    let selectedIndex = DOM.historialSelect.value;
-    if (selectedIndex === "") return;
-    
-    let historial = !localStorage.getItem("historial")?[]:JSON.parse(localStorage.getItem("historial"));
-    
-    if (historial[selectedIndex]) {
-        historial.splice(selectedIndex, 1);
-        localStorage.setItem("historial", JSON.stringify(historial));
-        pintarHistorial(historial);
-    }
-    limpiarInputsCalc();
-}
-
+/* 7. GESTIÓN DE TEMA (DARK MODE) */
 function inicializarTema() {
     const savedTheme = localStorage.getItem('theme') || 'light';
-    document.body.classList.toggle('dark-mode', savedTheme === 'dark');
-    actualizarIconoTema();
+    const isDark = savedTheme === 'dark';
+
+    // Toggle acepta un segundo parámetro booleano (force), muy útil aquí
+    document.body.classList.toggle('dark-mode', isDark);
+    actualizarIconoTema(isDark);
 }
 
-function actualizarIconoTema() {
-    const isDarkMode = localStorage.getItem('theme') === 'dark';
-    DOM.toggleTheme.innerHTML = `<i class="fas fa-${isDarkMode ? 'moon' : 'sun'}"></i>`;
+function toggleDarkMode() {
+    const isDark = document.body.classList.toggle('dark-mode');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    actualizarIconoTema(isDark);
 }
 
-function toggleDarkMMode() {
-    document.body.classList.toggle('dark-mode');
-    const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
-    localStorage.setItem('theme', theme);
-    actualizarIconoTema();
+function actualizarIconoTema(isDark) {
+    DOM.toggleTheme.innerHTML = `<i class="fas fa-${isDark ? 'moon' : 'sun'}"></i>`;
 }
+
 
 // Inicializaciones
 inicializarTema();
-
-pintarHistorial(localStorage.getItem("historial")?JSON.parse(localStorage.getItem("historial")):[]);
+pintarHistorial(getHistorial());
