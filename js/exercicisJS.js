@@ -3,8 +3,37 @@ _get("calculaFact").onclick = () => executaFuncio(calculaFactorial, "resultat", 
 _get("calculaArrel").onclick = () => executaFuncio(arrel, "resultat", "num1");
 _get("calculaMajor").onclick = () => executaFuncio(major, "resultat", "num1", "num2");
 _get("calculaPot").onclick = () => executaFuncio(potencia, "resultat", "num1", "num2");
-_get("calculaRAND").onclick = () => executaFuncio(random, "resultat");
+_get("calculaRAND").onclick = () => executaFuncio(aleatori, "resultat");
 _get("fonsAleatori").onclick = () => fonsAleatori();
+
+let intervalRanndId;
+_get("randomGenerator").onclick = () => {
+
+    if (!intervalRanndId) {
+        intervalRanndId = setInterval(randomGenerator, 100);
+    } else {
+        clearInterval(intervalRanndId);
+        intervalRanndId = null;
+    }
+};
+
+function randomGenerator() {
+    _get("randText").value = aleatori(36);
+}
+
+function cuentaAtras() {
+    let num = 60;
+    let intervalId = setInterval(() => {
+        _get("randText").value = num;
+        num--;
+        if (num < 0) {
+            clearInterval(intervalId);
+            location.reload();
+        }
+    }, 100);
+}
+
+_get("cuentaAtras").onclick = () => cuentaAtras();
 
 //funcions d'ajuda
 function _get(idElement) { return document.getElementById(idElement); }
@@ -14,11 +43,11 @@ function executaFuncio(funcio, output, input1, input2) {
     var num2 = input2 ? parseInt(_get(input2).value) : null;
 
     var resultat;
-    if (num1!=null && num2!=null) {
+    if (num1 != null && num2 != null) {
         resultat = funcio(num1, num2);
-    } else if (num1!=null){
+    } else if (num1 != null) {
         resultat = funcio(num1);
-    } else{
+    } else {
         resultat = funcio();
     }
 
@@ -28,7 +57,7 @@ function executaFuncio(funcio, output, input1, input2) {
 
 //funcions que heu d'implementar
 function calculaFactorial(numero) {
-    for(let i = numero - 1; i >= 1; i--){
+    for (let i = numero - 1; i >= 1; i--) {
         numero = numero * i;
     }
     return numero;
@@ -36,7 +65,7 @@ function calculaFactorial(numero) {
 
 
 function calculaFactorial(numero) {
-    return (numero==1)? 1: numero*calculaFactorial(numero-1);
+    return (numero == 1) ? 1 : numero * calculaFactorial(numero - 1);
 }
 
 //Version Miquel
@@ -63,9 +92,9 @@ function major(numero1, numero2) {
 // }
 
 //Version Max 
- function potencia(base, exp) {
-     return Math.pow(base,exp);
- }
+function potencia(base, exp) {
+    return Math.pow(base, exp);
+}
 
 //Version Max 
 // function potencia(base, exp) {
@@ -73,11 +102,11 @@ function major(numero1, numero2) {
 // }
 
 function arrel(num) {
-    return (num**(1/2)).toFixed(3);
+    return (num ** (1 / 2)).toFixed(3);
 }
 
-function random() {
-    return Math.round(Math.random() * 100 );
+function aleatori(limit = 100) {
+    return Math.round(Math.random() * (limit + 1));
 }
 
 function fonsAleatori() {
